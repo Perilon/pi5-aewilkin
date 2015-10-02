@@ -14,7 +14,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Sun Sep 27 14:45:04 EDT 2015
+ * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
  * @generated */
 public class QASet_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -122,6 +122,177 @@ public class QASet_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_PassageFSArray), i, v);
   }
  
+ 
+  /** @generated */
+  final Feature casFeat_RankedPassageFSArray;
+  /** @generated */
+  final int     casFeatCode_RankedPassageFSArray;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getRankedPassageFSArray(int addr) {
+        if (featOkTst && casFeat_RankedPassageFSArray == null)
+      jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setRankedPassageFSArray(int addr, int v) {
+        if (featOkTst && casFeat_RankedPassageFSArray == null)
+      jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    ll_cas.ll_setRefValue(addr, casFeatCode_RankedPassageFSArray, v);}
+    
+   /** @generated
+   * @param addr low level Feature Structure reference
+   * @param i index of item in the array
+   * @return value at index i in the array 
+   */
+  public int getRankedPassageFSArray(int addr, int i) {
+        if (featOkTst && casFeat_RankedPassageFSArray == null)
+      jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    if (lowLevelTypeChecks)
+      return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i, true);
+    jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i);
+  return ll_cas.ll_getRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i);
+  }
+   
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param i index of item in the array
+   * @param v value to set
+   */ 
+  public void setRankedPassageFSArray(int addr, int i, int v) {
+        if (featOkTst && casFeat_RankedPassageFSArray == null)
+      jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    if (lowLevelTypeChecks)
+      ll_cas.ll_setRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i, v, true);
+    jcas.checkArrayBounds(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i);
+    ll_cas.ll_setRefArrayValue(ll_cas.ll_getRefValue(addr, casFeatCode_RankedPassageFSArray), i, v);
+  }
+ 
+ 
+  /** @generated */
+  final Feature casFeat_size;
+  /** @generated */
+  final int     casFeatCode_size;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getSize(int addr) {
+        if (featOkTst && casFeat_size == null)
+      jcas.throwFeatMissing("size", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_size);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setSize(int addr, int v) {
+        if (featOkTst && casFeat_size == null)
+      jcas.throwFeatMissing("size", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_size, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_precisionAt1;
+  /** @generated */
+  final int     casFeatCode_precisionAt1;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getPrecisionAt1(int addr) {
+        if (featOkTst && casFeat_precisionAt1 == null)
+      jcas.throwFeatMissing("precisionAt1", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_precisionAt1);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setPrecisionAt1(int addr, double v) {
+        if (featOkTst && casFeat_precisionAt1 == null)
+      jcas.throwFeatMissing("precisionAt1", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_precisionAt1, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_precisionAt5;
+  /** @generated */
+  final int     casFeatCode_precisionAt5;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getPrecisionAt5(int addr) {
+        if (featOkTst && casFeat_precisionAt5 == null)
+      jcas.throwFeatMissing("precisionAt5", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_precisionAt5);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setPrecisionAt5(int addr, double v) {
+        if (featOkTst && casFeat_precisionAt5 == null)
+      jcas.throwFeatMissing("precisionAt5", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_precisionAt5, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_meanReciprocalRank;
+  /** @generated */
+  final int     casFeatCode_meanReciprocalRank;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getMeanReciprocalRank(int addr) {
+        if (featOkTst && casFeat_meanReciprocalRank == null)
+      jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_meanReciprocalRank);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setMeanReciprocalRank(int addr, double v) {
+        if (featOkTst && casFeat_meanReciprocalRank == null)
+      jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_meanReciprocalRank, v);}
+    
+  
+ 
+  /** @generated */
+  final Feature casFeat_averagePrecision;
+  /** @generated */
+  final int     casFeatCode_averagePrecision;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getAveragePrecision(int addr) {
+        if (featOkTst && casFeat_averagePrecision == null)
+      jcas.throwFeatMissing("averagePrecision", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_averagePrecision);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setAveragePrecision(int addr, double v) {
+        if (featOkTst && casFeat_averagePrecision == null)
+      jcas.throwFeatMissing("averagePrecision", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_averagePrecision, v);}
+    
+  
 
 
 
@@ -141,6 +312,30 @@ public class QASet_Type extends ComponentAnnotation_Type {
  
     casFeat_PassageFSArray = jcas.getRequiredFeatureDE(casType, "PassageFSArray", "uima.cas.FSArray", featOkTst);
     casFeatCode_PassageFSArray  = (null == casFeat_PassageFSArray) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_PassageFSArray).getCode();
+
+ 
+    casFeat_RankedPassageFSArray = jcas.getRequiredFeatureDE(casType, "RankedPassageFSArray", "uima.cas.FSArray", featOkTst);
+    casFeatCode_RankedPassageFSArray  = (null == casFeat_RankedPassageFSArray) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_RankedPassageFSArray).getCode();
+
+ 
+    casFeat_size = jcas.getRequiredFeatureDE(casType, "size", "uima.cas.Integer", featOkTst);
+    casFeatCode_size  = (null == casFeat_size) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_size).getCode();
+
+ 
+    casFeat_precisionAt1 = jcas.getRequiredFeatureDE(casType, "precisionAt1", "uima.cas.Double", featOkTst);
+    casFeatCode_precisionAt1  = (null == casFeat_precisionAt1) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_precisionAt1).getCode();
+
+ 
+    casFeat_precisionAt5 = jcas.getRequiredFeatureDE(casType, "precisionAt5", "uima.cas.Double", featOkTst);
+    casFeatCode_precisionAt5  = (null == casFeat_precisionAt5) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_precisionAt5).getCode();
+
+ 
+    casFeat_meanReciprocalRank = jcas.getRequiredFeatureDE(casType, "meanReciprocalRank", "uima.cas.Double", featOkTst);
+    casFeatCode_meanReciprocalRank  = (null == casFeat_meanReciprocalRank) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_meanReciprocalRank).getCode();
+
+ 
+    casFeat_averagePrecision = jcas.getRequiredFeatureDE(casType, "averagePrecision", "uima.cas.Double", featOkTst);
+    casFeatCode_averagePrecision  = (null == casFeat_averagePrecision) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_averagePrecision).getCode();
 
   }
 }

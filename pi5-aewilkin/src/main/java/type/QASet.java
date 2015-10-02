@@ -13,8 +13,8 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Sun Sep 27 14:45:04 EDT 2015
- * XML source: /home/perilon/git/pi4-aewilkin/pi4-aewilkin/src/main/resources/descriptors/casConsumerDescriptor.xml
+ * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
+ * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class QASet extends ComponentAnnotation {
   /** @generated
@@ -140,6 +140,160 @@ public class QASet extends ComponentAnnotation {
       jcasType.jcas.throwFeatMissing("PassageFSArray", "type.QASet");
     jcasType.jcas.checkArrayBounds(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_PassageFSArray), i);
     jcasType.ll_cas.ll_setRefArrayValue(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_PassageFSArray), i, jcasType.ll_cas.ll_getFSRef(v));}
+   
+    
+  //*--------------*
+  //* Feature: RankedPassageFSArray
+
+  /** getter for RankedPassageFSArray - gets The passages for each question, like in PassageFSArray, but ranked in descending order of score
+   * @generated
+   * @return value of the feature 
+   */
+  public FSArray getRankedPassageFSArray() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_RankedPassageFSArray == null)
+      jcasType.jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    return (FSArray)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray)));}
+    
+  /** setter for RankedPassageFSArray - sets The passages for each question, like in PassageFSArray, but ranked in descending order of score 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setRankedPassageFSArray(FSArray v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_RankedPassageFSArray == null)
+      jcasType.jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    jcasType.ll_cas.ll_setRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray, jcasType.ll_cas.ll_getFSRef(v));}    
+    
+  /** indexed getter for RankedPassageFSArray - gets an indexed value - The passages for each question, like in PassageFSArray, but ranked in descending order of score
+   * @generated
+   * @param i index in the array to get
+   * @return value of the element at index i 
+   */
+  public Passage getRankedPassageFSArray(int i) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_RankedPassageFSArray == null)
+      jcasType.jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    jcasType.jcas.checkArrayBounds(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray), i);
+    return (Passage)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefArrayValue(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray), i)));}
+
+  /** indexed setter for RankedPassageFSArray - sets an indexed value - The passages for each question, like in PassageFSArray, but ranked in descending order of score
+   * @generated
+   * @param i index in the array to set
+   * @param v value to set into the array 
+   */
+  public void setRankedPassageFSArray(int i, Passage v) { 
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_RankedPassageFSArray == null)
+      jcasType.jcas.throwFeatMissing("RankedPassageFSArray", "type.QASet");
+    jcasType.jcas.checkArrayBounds(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray), i);
+    jcasType.ll_cas.ll_setRefArrayValue(jcasType.ll_cas.ll_getRefValue(addr, ((QASet_Type)jcasType).casFeatCode_RankedPassageFSArray), i, jcasType.ll_cas.ll_getFSRef(v));}
+   
+    
+  //*--------------*
+  //* Feature: size
+
+  /** getter for size - gets The number of passages in a QASet; the size of the PassageFSArray and RankedPassageFSArray
+   * @generated
+   * @return value of the feature 
+   */
+  public int getSize() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_size == null)
+      jcasType.jcas.throwFeatMissing("size", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_size);}
+    
+  /** setter for size - sets The number of passages in a QASet; the size of the PassageFSArray and RankedPassageFSArray 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setSize(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_size == null)
+      jcasType.jcas.throwFeatMissing("size", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_size, v);}    
+   
+    
+  //*--------------*
+  //* Feature: precisionAt1
+
+  /** getter for precisionAt1 - gets The precision at 1 for the passages in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public double getPrecisionAt1() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precisionAt1 == null)
+      jcasType.jcas.throwFeatMissing("precisionAt1", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precisionAt1);}
+    
+  /** setter for precisionAt1 - sets The precision at 1 for the passages in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setPrecisionAt1(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precisionAt1 == null)
+      jcasType.jcas.throwFeatMissing("precisionAt1", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precisionAt1, v);}    
+   
+    
+  //*--------------*
+  //* Feature: precisionAt5
+
+  /** getter for precisionAt5 - gets The precision at 5 of the passages in the QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public double getPrecisionAt5() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precisionAt5 == null)
+      jcasType.jcas.throwFeatMissing("precisionAt5", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precisionAt5);}
+    
+  /** setter for precisionAt5 - sets The precision at 5 of the passages in the QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setPrecisionAt5(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_precisionAt5 == null)
+      jcasType.jcas.throwFeatMissing("precisionAt5", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_precisionAt5, v);}    
+   
+    
+  //*--------------*
+  //* Feature: meanReciprocalRank
+
+  /** getter for meanReciprocalRank - gets The mean reciprocal rank of the passages in a QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public double getMeanReciprocalRank() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_meanReciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_meanReciprocalRank);}
+    
+  /** setter for meanReciprocalRank - sets The mean reciprocal rank of the passages in a QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setMeanReciprocalRank(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_meanReciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_meanReciprocalRank, v);}    
+   
+    
+  //*--------------*
+  //* Feature: averagePrecision
+
+  /** getter for averagePrecision - gets The average precision of the questions in a QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public double getAveragePrecision() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_averagePrecision == null)
+      jcasType.jcas.throwFeatMissing("averagePrecision", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_averagePrecision);}
+    
+  /** setter for averagePrecision - sets The average precision of the questions in a QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setAveragePrecision(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_averagePrecision == null)
+      jcasType.jcas.throwFeatMissing("averagePrecision", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_averagePrecision, v);}    
   }
 
     

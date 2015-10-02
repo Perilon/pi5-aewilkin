@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information of the passage.
- * Updated by JCasGen Sun Sep 27 14:45:04 EDT 2015
+ * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
  * @generated */
 public class Passage_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -164,6 +164,30 @@ public class Passage_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_sentence, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_reciprocalRank;
+  /** @generated */
+  final int     casFeatCode_reciprocalRank;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public double getReciprocalRank(int addr) {
+        if (featOkTst && casFeat_reciprocalRank == null)
+      jcas.throwFeatMissing("reciprocalRank", "type.Passage");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_reciprocalRank);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setReciprocalRank(int addr, double v) {
+        if (featOkTst && casFeat_reciprocalRank == null)
+      jcas.throwFeatMissing("reciprocalRank", "type.Passage");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_reciprocalRank, v);}
+    
+  
 
 
 
@@ -195,6 +219,10 @@ public class Passage_Type extends ComponentAnnotation_Type {
  
     casFeat_sentence = jcas.getRequiredFeatureDE(casType, "sentence", "uima.cas.String", featOkTst);
     casFeatCode_sentence  = (null == casFeat_sentence) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sentence).getCode();
+
+ 
+    casFeat_reciprocalRank = jcas.getRequiredFeatureDE(casType, "reciprocalRank", "uima.cas.Double", featOkTst);
+    casFeatCode_reciprocalRank  = (null == casFeat_reciprocalRank) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_reciprocalRank).getCode();
 
   }
 }

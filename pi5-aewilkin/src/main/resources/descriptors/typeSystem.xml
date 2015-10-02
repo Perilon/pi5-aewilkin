@@ -81,6 +81,11 @@ You need to implement the types requried for your ranking model.</description>
           <description/>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>reciprocalRank</name>
+          <description>The reciprocal rank of the passage in its QASet</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
@@ -110,6 +115,37 @@ You need to implement the types requried for your ranking model.</description>
           <description>An FSArray of the passages purporting to answer a question in a QASet</description>
           <rangeTypeName>uima.cas.FSArray</rangeTypeName>
           <elementType>type.Passage</elementType>
+        </featureDescription>
+      <featureDescription>
+          <name>RankedPassageFSArray</name>
+          <description>The passages for each question, like in PassageFSArray, but ranked in descending order of score</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>type.Passage</elementType>
+        </featureDescription>
+      <featureDescription>
+          <name>size</name>
+          <description>The number of passages in a QASet; the size of the PassageFSArray and RankedPassageFSArray</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>precisionAt1</name>
+          <description>The precision at 1 for the passages in the QASet</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>precisionAt5</name>
+          <description>The precision at 5 of the passages in the QASet</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>meanReciprocalRank</name>
+          <description>The mean reciprocal rank of the passages in a QASet</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>averagePrecision</name>
+          <description>The average precision of the questions in a QASet</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>

@@ -10,8 +10,8 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** Stores the information of the passage.
- * Updated by JCasGen Sun Sep 27 14:45:04 EDT 2015
- * XML source: /home/perilon/git/pi4-aewilkin/pi4-aewilkin/src/main/resources/descriptors/casConsumerDescriptor.xml
+ * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
+ * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Passage extends ComponentAnnotation {
   /** @generated
@@ -183,6 +183,28 @@ public class Passage extends ComponentAnnotation {
     if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_sentence == null)
       jcasType.jcas.throwFeatMissing("sentence", "type.Passage");
     jcasType.ll_cas.ll_setStringValue(addr, ((Passage_Type)jcasType).casFeatCode_sentence, v);}    
+   
+    
+  //*--------------*
+  //* Feature: reciprocalRank
+
+  /** getter for reciprocalRank - gets The reciprocal rank of the passage in its QASet
+   * @generated
+   * @return value of the feature 
+   */
+  public double getReciprocalRank() {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_reciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("reciprocalRank", "type.Passage");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((Passage_Type)jcasType).casFeatCode_reciprocalRank);}
+    
+  /** setter for reciprocalRank - sets The reciprocal rank of the passage in its QASet 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setReciprocalRank(double v) {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_reciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("reciprocalRank", "type.Passage");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((Passage_Type)jcasType).casFeatCode_reciprocalRank, v);}    
   }
 
     

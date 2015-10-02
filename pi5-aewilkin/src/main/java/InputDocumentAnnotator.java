@@ -124,7 +124,183 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
 
       }
       
+//      int RankedPassageFSArrayLen = passageFSArrayLen; 
+      
+      
+      /*Define a class for passages that is made comparable, in order to be able to sort the passages by score using a regular array instead of a 
+      stupid FSArray that can't implement jack.  This array will then be turned back into an FSArray, which will appear ranked, and that will become the
+      RankedPassageFSArray feature of the QASet type.*/
+      
+      class Psg implements Comparable {
+        
+        private String sentence;
+        private double score;
+        private boolean label;
+        private String sourceDocID;
+        private String id;
+        
+        public void setSentence(String sent) {
+          this.sentence = sent;
+        }
+        
+        public void setScore(double sc) {
+          this.score = sc;
+        }
+        
+        public void setLabel(boolean lb) {
+          this.label = lb;
+        }
+        
+        public void setSourceDocID(String sdi) {
+          this.sourceDocID = sdi;
+        }
+        
+        public void setID(String id) {
+          this.id = id;
+        }
+        
+        public String getSentence() {
+          return this.sentence;
+        }
+        
+        public double getScore() {
+          return this.score;
+        }
+        
+        public boolean getLabel() {
+          return this.label;
+        }
+        
+        public String getSourceDocID() {
+          return this.sourceDocID;
+        }
+        
+        public String getId() {
+          return this.id;
+        }
+
+        public int compareTo(Object anotherPsg) {
+          if (!(anotherPsg instanceof Psg)) {
+            throw new ClassCastException("A Passage object is expected.");
+          }
+          double anotherPsgScore = ((Psg) anotherPsg).getScore();
+          return Double.compare(this.score, anotherPsgScore);
+        }
+        
+      }
+      
+      /*Put each member of passageFSArray into a regular array; then sort the array*/
+      
+      Psg[] psgArray = new Psg[passageFSArrayLen];
+      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        Passage passage = (Passage) passageFSArray.get(i);
+        
+        Psg psg = new Psg();
+        
+        psg.setScore(passage.getScore());
+        psg.setSentence(passage.getSentence());
+        psg.setLabel(passage.getLabel());
+        psg.setSourceDocID(passage.getSourceDocId());
+        psg.setID(passage.getId());
+        
+        psgArray[i] = psg;
+      }
+      
+      Arrays.sort(psgArray);
+      
+      
+      /*Then put the items in that array, which are now ordered by score, into a new FSArray.  That FSArray becomes the
+      RankedPassageFSArray feature of the QASet*/
+      
+      
+      FSArray RankedPassageFSArray = new FSArray(aJCas, passageFSArrayLen);
+      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        Passage newPass = new Passage(aJCas);
+        
+        newPass.setScore(psgArray[i].getScore());
+        newPass.setSentence(psgArray[i].getSentence());
+        newPass.setLabel(psgArray[i].getLabel());
+        newPass.setSourceDocId(psgArray[i].getSourceDocID());
+        newPass.setId(psgArray[i].getId());
+        
+        /*We're still in the same question of the question iterator existing below the iterator of the QASet, so this should
+        be the right one.*/
+        
+        newPass.setQuestion(question);
+        
+        RankedPassageFSArray.set(i, newPass);
+      }
+      
+      
+      /*Now we have the ranked passages, we can actually compute the various metrics that depend on it, and add those values as features of the
+      passages and the QASet*/
+      
+      int totalNumCorrect = 0;
+      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) {
+          totalNumCorrect++;
+        }
+      }
+      
+      /*Calculate precisionAt1*/
+      
+      double precisionAt1 = 0;
+      double denom1;
+      
+      if (totalNumCorrect > 0) {
+        denom1 = 1;
+      } else {
+        denom1 = Double.MIN_VALUE;
+      }
+      
+      int numAt1Correct = 0;
+      
+      if ((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) {
+        numAt1Correct++;
+      }
+      
+      precisionAt1 = numAt1Correct / denom1;
+      
+      qaSet.setPrecisionAt1(precisionAt1);
+      
+      
+      /*Calculate precisionAt5*/
+      
+      double precisionAt5 = 0;
+      double denom5;
+      
+      if (totalNumCorrect > 5) {
+        denom5 = 5;
+      } else if (totalNumCorrect < 5 && totalNumCorrect > 0) {
+        denom5 = totalNumCorrect;
+      } else {
+        denom5 = Double.MIN_VALUE;
+      }
+      
+      int numAt5Correct = 0;
+      
+      if ((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) {
+        numAt5Correct++;
+      
+      precisionAt5 = numAt5Correct / denom5;
+      
+      qaSet.setPrecisionAt5(precisionAt5);
+      
+      
+      
+      
+      
+      qaSet.setRankedPassageFSArray(RankedPassageFSArray);
+      qaSet.addToIndexes();
+      
+      
+      
       inputDocument.addToIndexes();
+      
+      }
       
     }
   }
