@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores all the questions and its associated answer candidates.
- * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
+ * Updated by JCasGen Fri Oct 02 02:52:55 EDT 2015
  * @generated */
 public class InputDocument_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -45,6 +45,32 @@ public class InputDocument_Type extends ComponentAnnotation_Type {
   @SuppressWarnings ("hiding")
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.InputDocument");
  
+  /** @generated */
+  final Feature casFeat_QASet;
+  /** @generated */
+  final int     casFeatCode_QASet;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getQASet(int addr) {
+        if (featOkTst && casFeat_QASet == null)
+      jcas.throwFeatMissing("QASet", "type.InputDocument");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_QASet);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setQASet(int addr, int v) {
+        if (featOkTst && casFeat_QASet == null)
+      jcas.throwFeatMissing("QASet", "type.InputDocument");
+    ll_cas.ll_setRefValue(addr, casFeatCode_QASet, v);}
+    
+  
+
+
+
   /** initialize variables to correspond with Cas Type and Features
 	 * @generated
 	 * @param jcas JCas
@@ -53,6 +79,10 @@ public class InputDocument_Type extends ComponentAnnotation_Type {
   public InputDocument_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
+
+ 
+    casFeat_QASet = jcas.getRequiredFeatureDE(casType, "QASet", "type.QASet", featOkTst);
+    casFeatCode_QASet  = (null == casFeat_QASet) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_QASet).getCode();
 
   }
 }

@@ -11,7 +11,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Stores all the questions and its associated answer candidates.
- * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
+ * Updated by JCasGen Fri Oct 02 02:52:55 EDT 2015
  * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class InputDocument extends ComponentAnnotation {
@@ -76,6 +76,26 @@ public class InputDocument extends ComponentAnnotation {
      
  
     
-}
+  //*--------------*
+  //* Feature: QASet
+
+  /** getter for QASet - gets The QASet type feature for the InputDocument type
+   * @generated
+   * @return value of the feature 
+   */
+  public QASet getQASet() {
+    if (InputDocument_Type.featOkTst && ((InputDocument_Type)jcasType).casFeat_QASet == null)
+      jcasType.jcas.throwFeatMissing("QASet", "type.InputDocument");
+    return (QASet)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((InputDocument_Type)jcasType).casFeatCode_QASet)));}
+    
+  /** setter for QASet - sets The QASet type feature for the InputDocument type 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setQASet(QASet v) {
+    if (InputDocument_Type.featOkTst && ((InputDocument_Type)jcasType).casFeat_QASet == null)
+      jcasType.jcas.throwFeatMissing("QASet", "type.InputDocument");
+    jcasType.ll_cas.ll_setRefValue(addr, ((InputDocument_Type)jcasType).casFeatCode_QASet, jcasType.ll_cas.ll_getFSRef(v));}    
+  }
 
     

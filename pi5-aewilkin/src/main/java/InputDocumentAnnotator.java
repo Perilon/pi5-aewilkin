@@ -39,8 +39,23 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
     Iterator qaIter = QASetIndex.iterator();
     
     
-    while (qaIter.hasNext()) {                    // Error on this line!
-      QASet qaSet = (QASet) qaIter.next();
+    while (qaIter.hasNext()) {   
+      
+      QASet qaSet = new QASet(aJCas);
+      
+      qaSet = (QASet) qaIter.next();
+      
+
+//      Question question = new Question(aJCas);
+//      
+//      question = (Question) questionIter.next();
+//      int beginQuestion = question.getBegin();
+//      int endQuestion = question.getEnd();
+//      
+//      question.setBegin(beginQuestion);
+//      question.setEnd(endQuestion);
+//      question.addToIndexes();
+      
       
       Question question = qaSet.getQuestion();
       
@@ -124,7 +139,6 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
 
       }
       
-//      int RankedPassageFSArrayLen = passageFSArrayLen; 
       
       
       /*Define a class for passages that is made comparable, in order to be able to sort the passages by score using a regular array instead of a 
@@ -133,11 +147,22 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       
       class Psg implements Comparable {
         
+        private int begin;
+        private int end;
         private String sentence;
         private double score;
         private boolean label;
         private String sourceDocID;
         private String id;
+       
+        
+        public void setBegin(int bg) {
+          this.begin = bg;
+        }
+        
+        public void setEnd(int e) {
+          this.end = e;
+        }
         
         public void setSentence(String sent) {
           this.sentence = sent;
@@ -157,6 +182,14 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         
         public void setID(String id) {
           this.id = id;
+        }
+        
+        public int getBegin() {
+          return this.begin;
+        }
+        
+        public int getEnd() {
+          return this.end;
         }
         
         public String getSentence() {
@@ -184,7 +217,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
             throw new ClassCastException("A Passage object is expected.");
           }
           double anotherPsgScore = ((Psg) anotherPsg).getScore();
-          return Double.compare(this.score, anotherPsgScore);
+          return Double.compare(anotherPsgScore, this.score);
         }
         
       }
@@ -198,6 +231,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         
         Psg psg = new Psg();
         
+        psg.setBegin(passage.getBegin());
+        psg.setEnd(passage.getEnd());
         psg.setScore(passage.getScore());
         psg.setSentence(passage.getSentence());
         psg.setLabel(passage.getLabel());
@@ -219,6 +254,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       for (int i = 0; i < passageFSArrayLen; i++) {
         Passage newPass = new Passage(aJCas);
         
+        newPass.setBegin(psgArray[i].getBegin());
+        newPass.setEnd(psgArray[i].getEnd());
         newPass.setScore(psgArray[i].getScore());
         newPass.setSentence(psgArray[i].getSentence());
         newPass.setLabel(psgArray[i].getLabel());
@@ -274,7 +311,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       
       if (totalNumCorrect > 5) {
         denom5 = 5;
-      } else if (totalNumCorrect < 5 && totalNumCorrect > 0) {
+      } else if (totalNumCorrect <= 5 && totalNumCorrect > 0) {
         denom5 = totalNumCorrect;
       } else {
         denom5 = Double.MIN_VALUE;
@@ -282,26 +319,73 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       
       int numAt5Correct = 0;
       
-      if ((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) {
-        numAt5Correct++;
+      for (int i = 0; i < 5; i++) {
+        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) {
+          numAt5Correct++;
+        }
+      }
       
       precisionAt5 = numAt5Correct / denom5;
       
       qaSet.setPrecisionAt5(precisionAt5);
       
       
+      /*Calculate Mean Reciprocal Rank*/
+
+      double mrrRunningTotal = 0;
       
-      
-      
-      qaSet.setRankedPassageFSArray(RankedPassageFSArray);
-      qaSet.addToIndexes();
-      
-      
-      
-      inputDocument.addToIndexes();
-      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true ) {
+          double rr = (double) (1/(double) (i+1));
+          mrrRunningTotal += rr;
+          
+          (qaSet.getRankedPassageFSArray(i)).setReciprocalRank(rr);
+          
+        }
       }
       
+      double MRR;
+        
+      if (totalNumCorrect > 0) {
+        MRR = mrrRunningTotal / (double) totalNumCorrect;
+      } else {
+        MRR = Double.MIN_VALUE;
+      }
+      
+      qaSet.setMeanReciprocalRank(MRR);
+      
+      
+      /*Calculate Average Precision*/
+      
+      double apRunningTotal = 0;
+      double numCorrectRunningTotal = 0;
+      
+      for (int i = 0; i < passageFSArrayLen; i++) {
+        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true ) {
+          numCorrectRunningTotal++;
+          apRunningTotal += (numCorrectRunningTotal / (double) (i+1));
+        }
+      }
+          
+      double AP;
+      
+      if (totalNumCorrect > 0) {
+        AP = apRunningTotal / (double) totalNumCorrect;
+      } else {
+        AP = Double.MIN_VALUE;
+      }
+      
+      qaSet.setAveragePrecision(AP);      
+      
+      qaSet.setSize(passageFSArrayLen);
+      
+      qaSet.setRankedPassageFSArray(RankedPassageFSArray);
+      
+      inputDocument.setQASet(qaSet);
+      
+
+          
+      inputDocument.addToIndexes();
     }
   }
 }

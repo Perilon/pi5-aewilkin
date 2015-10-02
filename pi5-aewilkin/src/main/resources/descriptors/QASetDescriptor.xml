@@ -19,15 +19,17 @@
     <capabilities>
       <capability>
         <inputs>
-          <type allAnnotatorFeatures="true">Token</type>
+          <type allAnnotatorFeatures="true">type.Token</type>
           <type allAnnotatorFeatures="true">type.Question</type>
           <type allAnnotatorFeatures="true">type.Passage</type>
+          <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
         </inputs>
         <outputs>
-          <type allAnnotatorFeatures="true">Token</type>
+          <type allAnnotatorFeatures="true">type.Token</type>
           <type allAnnotatorFeatures="true">type.Question</type>
-          <type allAnnotatorFeatures="true">QASet</type>
+          <type allAnnotatorFeatures="true">type.QASet</type>
           <type allAnnotatorFeatures="true">type.Passage</type>
+          <type allAnnotatorFeatures="true">type.ComponentAnnotation</type>
         </outputs>
         <languagesSupported/>
       </capability>

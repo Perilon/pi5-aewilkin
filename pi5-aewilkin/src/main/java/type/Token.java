@@ -10,7 +10,7 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** Tokens.
- * Updated by JCasGen Fri Oct 02 01:31:40 EDT 2015
+ * Updated by JCasGen Fri Oct 02 02:52:55 EDT 2015
  * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Token extends ComponentAnnotation {

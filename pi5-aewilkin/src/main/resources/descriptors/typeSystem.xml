@@ -27,7 +27,14 @@ You need to implement the types requried for your ranking model.</description>
       <name>type.InputDocument</name>
       <description>Stores all the questions and its associated answer candidates.</description>
       <supertypeName>type.ComponentAnnotation</supertypeName>
-      </typeDescription>
+      <features>
+        <featureDescription>
+          <name>QASet</name>
+          <description>The QASet type feature for the InputDocument type</description>
+          <rangeTypeName>type.QASet</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
     <typeDescription>
       <name>type.Question</name>
       <description>Stores the information about a question.</description>
