@@ -13,7 +13,7 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Fri Oct 02 02:52:55 EDT 2015
+ * Updated by JCasGen Fri Oct 02 03:52:05 EDT 2015
  * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class QASet extends ComponentAnnotation {
@@ -294,6 +294,28 @@ public class QASet extends ComponentAnnotation {
     if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_averagePrecision == null)
       jcasType.jcas.throwFeatMissing("averagePrecision", "type.QASet");
     jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_averagePrecision, v);}    
+   
+    
+  //*--------------*
+  //* Feature: numCorrect
+
+  /** getter for numCorrect - gets Number of passages for a question that are correct answers
+   * @generated
+   * @return value of the feature 
+   */
+  public int getNumCorrect() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_numCorrect == null)
+      jcasType.jcas.throwFeatMissing("numCorrect", "type.QASet");
+    return jcasType.ll_cas.ll_getIntValue(addr, ((QASet_Type)jcasType).casFeatCode_numCorrect);}
+    
+  /** setter for numCorrect - sets Number of passages for a question that are correct answers 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setNumCorrect(int v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_numCorrect == null)
+      jcasType.jcas.throwFeatMissing("numCorrect", "type.QASet");
+    jcasType.ll_cas.ll_setIntValue(addr, ((QASet_Type)jcasType).casFeatCode_numCorrect, v);}    
   }
 
     

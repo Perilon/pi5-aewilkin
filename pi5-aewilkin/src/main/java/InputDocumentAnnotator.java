@@ -155,6 +155,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
         private String sourceDocID;
         private String id;
        
+        public Psg() {
+        }
         
         public void setBegin(int bg) {
           this.begin = bg;
@@ -339,7 +341,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
           double rr = (double) (1/(double) (i+1));
           mrrRunningTotal += rr;
           
-          (qaSet.getRankedPassageFSArray(i)).setReciprocalRank(rr);
+//          (qaSet.getRankedPassageFSArray(i)).setReciprocalRank(rr);
           
         }
       }
@@ -378,6 +380,8 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       qaSet.setAveragePrecision(AP);      
       
       qaSet.setSize(passageFSArrayLen);
+      
+      qaSet.setNumCorrect(totalNumCorrect);
       
       qaSet.setRankedPassageFSArray(RankedPassageFSArray);
       

@@ -14,7 +14,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Fri Oct 02 02:52:55 EDT 2015
+ * Updated by JCasGen Fri Oct 02 03:52:05 EDT 2015
  * @generated */
 public class QASet_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -293,6 +293,30 @@ public class QASet_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setDoubleValue(addr, casFeatCode_averagePrecision, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_numCorrect;
+  /** @generated */
+  final int     casFeatCode_numCorrect;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getNumCorrect(int addr) {
+        if (featOkTst && casFeat_numCorrect == null)
+      jcas.throwFeatMissing("numCorrect", "type.QASet");
+    return ll_cas.ll_getIntValue(addr, casFeatCode_numCorrect);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setNumCorrect(int addr, int v) {
+        if (featOkTst && casFeat_numCorrect == null)
+      jcas.throwFeatMissing("numCorrect", "type.QASet");
+    ll_cas.ll_setIntValue(addr, casFeatCode_numCorrect, v);}
+    
+  
 
 
 
@@ -336,6 +360,10 @@ public class QASet_Type extends ComponentAnnotation_Type {
  
     casFeat_averagePrecision = jcas.getRequiredFeatureDE(casType, "averagePrecision", "uima.cas.Double", featOkTst);
     casFeatCode_averagePrecision  = (null == casFeat_averagePrecision) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_averagePrecision).getCode();
+
+ 
+    casFeat_numCorrect = jcas.getRequiredFeatureDE(casType, "numCorrect", "uima.cas.Integer", featOkTst);
+    casFeatCode_numCorrect  = (null == casFeat_numCorrect) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_numCorrect).getCode();
 
   }
 }
