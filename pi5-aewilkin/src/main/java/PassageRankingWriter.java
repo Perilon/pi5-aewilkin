@@ -76,7 +76,7 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
       throw new ResourceProcessException(e);
     }
     
-    String writeToFileName = "passageRanking.txt";
+    String writeToFileName = "RankingMetrics.csv";
 
  // retreive the filename of the input file from the CAS
     FSIterator it = jcas.getAnnotationIndex(SourceDocumentInformation.type).iterator();
@@ -136,25 +136,40 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
             FSIndex QASetIndex = jcas.getAnnotationIndex(QASet.type);
             FSIterator QASetIter = QASetIndex.iterator();
             
+            bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision\n");
+            
             while (QASetIter.hasNext()) {
               
               QASet qaSet = (QASet) QASetIter.next();
               
-              FSArray passageFSArray = qaSet.getPassageFSArray();
-              
-              int len = passageFSArray.size();
-              
-              for (int i = 0; i < len; i++) {
-                
-                String Id = ((Passage) passageFSArray.get(i)).getId();
-                String docID = ((Passage) passageFSArray.get(i)).getSourceDocId();
-                String score = Double.toString(((Passage) passageFSArray.get(i)).getScore());
-                String sentence = ((Passage) passageFSArray.get(i)).getSentence();
-                
-                bw.write( Id + " " + docID + " " + score + " " + sentence + "\n");
+//              FSArray passageFSArray = qaSet.getPassageFSArray();
+//              
+//              int len = passageFSArray.size();
+//              
+//              for (int i = 0; i < len; i++) {
+//                
+//                String Id = ((Passage) passageFSArray.get(i)).getId();
+//                String docID = ((Passage) passageFSArray.get(i)).getSourceDocId();
+//                String score = Double.toString(((Passage) passageFSArray.get(i)).getScore());
+//                String sentence = ((Passage) passageFSArray.get(i)).getSentence();
+//                
+//                bw.write( Id + " " + docID + " " + score + " " + sentence + "\n");
 //                System.out.println( Id + " " + docID + " " + score + " " + sentence );
-                
-              }
+              
+              String ID = ((Question) qaSet.getQuestion()).getId();
+              
+              
+              double Pat1 = qaSet.getPrecisionAt1();
+              double Pat5 = qaSet.getPrecisionAt5();
+              double RR = qaSet.getReciprocalRank();
+              double AP = qaSet.getAveragePrecision();
+              
+              System.out.println(Double.toString(AP));
+              
+              bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
+                      Double.toString(RR) + "," + Double.toString(AP) + "\n");
+              
+              
             }
             bw.close();
             System.out.println("Done");

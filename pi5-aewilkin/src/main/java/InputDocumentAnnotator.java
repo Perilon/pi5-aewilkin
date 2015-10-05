@@ -391,9 +391,10 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       
       for (int i = 0; i < passageFSArrayLen; i++) {
         if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true ) {
-          RR = (1 / (double) i); 
+          RR = (1 / (double) (i + 1));
+          break;
          }
-      }      
+       }      
       
       qaSet.setReciprocalRank(RR);
       
@@ -415,7 +416,7 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       if (totalNumCorrect > 0) {
         AP = apRunningTotal / (double) totalNumCorrect;
       } else {
-        AP = Double.MIN_VALUE;
+        AP = 0;
       }
       
       qaSet.setAveragePrecision(AP);      
