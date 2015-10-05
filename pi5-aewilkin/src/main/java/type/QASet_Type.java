@@ -14,7 +14,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Fri Oct 02 03:52:05 EDT 2015
+ * Updated by JCasGen Sun Oct 04 23:30:32 EDT 2015
  * @generated */
 public class QASet_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -247,26 +247,26 @@ public class QASet_Type extends ComponentAnnotation_Type {
   
  
   /** @generated */
-  final Feature casFeat_meanReciprocalRank;
+  final Feature casFeat_reciprocalRank;
   /** @generated */
-  final int     casFeatCode_meanReciprocalRank;
+  final int     casFeatCode_reciprocalRank;
   /** @generated
    * @param addr low level Feature Structure reference
    * @return the feature value 
    */ 
-  public double getMeanReciprocalRank(int addr) {
-        if (featOkTst && casFeat_meanReciprocalRank == null)
-      jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
-    return ll_cas.ll_getDoubleValue(addr, casFeatCode_meanReciprocalRank);
+  public double getReciprocalRank(int addr) {
+        if (featOkTst && casFeat_reciprocalRank == null)
+      jcas.throwFeatMissing("reciprocalRank", "type.QASet");
+    return ll_cas.ll_getDoubleValue(addr, casFeatCode_reciprocalRank);
   }
   /** @generated
    * @param addr low level Feature Structure reference
    * @param v value to set 
    */    
-  public void setMeanReciprocalRank(int addr, double v) {
-        if (featOkTst && casFeat_meanReciprocalRank == null)
-      jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
-    ll_cas.ll_setDoubleValue(addr, casFeatCode_meanReciprocalRank, v);}
+  public void setReciprocalRank(int addr, double v) {
+        if (featOkTst && casFeat_reciprocalRank == null)
+      jcas.throwFeatMissing("reciprocalRank", "type.QASet");
+    ll_cas.ll_setDoubleValue(addr, casFeatCode_reciprocalRank, v);}
     
   
  
@@ -354,8 +354,8 @@ public class QASet_Type extends ComponentAnnotation_Type {
     casFeatCode_precisionAt5  = (null == casFeat_precisionAt5) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_precisionAt5).getCode();
 
  
-    casFeat_meanReciprocalRank = jcas.getRequiredFeatureDE(casType, "meanReciprocalRank", "uima.cas.Double", featOkTst);
-    casFeatCode_meanReciprocalRank  = (null == casFeat_meanReciprocalRank) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_meanReciprocalRank).getCode();
+    casFeat_reciprocalRank = jcas.getRequiredFeatureDE(casType, "reciprocalRank", "uima.cas.Double", featOkTst);
+    casFeatCode_reciprocalRank  = (null == casFeat_reciprocalRank) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_reciprocalRank).getCode();
 
  
     casFeat_averagePrecision = jcas.getRequiredFeatureDE(casType, "averagePrecision", "uima.cas.Double", featOkTst);

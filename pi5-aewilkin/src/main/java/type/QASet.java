@@ -13,7 +13,7 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** Keeps track of which questions go with which answers
- * Updated by JCasGen Fri Oct 02 03:52:05 EDT 2015
+ * Updated by JCasGen Sun Oct 04 23:30:32 EDT 2015
  * XML source: /home/perilon/git/pi5-aewilkin/pi5-aewilkin/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class QASet extends ComponentAnnotation {
@@ -253,25 +253,25 @@ public class QASet extends ComponentAnnotation {
    
     
   //*--------------*
-  //* Feature: meanReciprocalRank
+  //* Feature: reciprocalRank
 
-  /** getter for meanReciprocalRank - gets The mean reciprocal rank of the passages in a QASet
+  /** getter for reciprocalRank - gets The reciprocal rank of the first correct answer of the ranked passages in a QASet
    * @generated
    * @return value of the feature 
    */
-  public double getMeanReciprocalRank() {
-    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_meanReciprocalRank == null)
-      jcasType.jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
-    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_meanReciprocalRank);}
+  public double getReciprocalRank() {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_reciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("reciprocalRank", "type.QASet");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_reciprocalRank);}
     
-  /** setter for meanReciprocalRank - sets The mean reciprocal rank of the passages in a QASet 
+  /** setter for reciprocalRank - sets The reciprocal rank of the first correct answer of the ranked passages in a QASet 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setMeanReciprocalRank(double v) {
-    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_meanReciprocalRank == null)
-      jcasType.jcas.throwFeatMissing("meanReciprocalRank", "type.QASet");
-    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_meanReciprocalRank, v);}    
+  public void setReciprocalRank(double v) {
+    if (QASet_Type.featOkTst && ((QASet_Type)jcasType).casFeat_reciprocalRank == null)
+      jcasType.jcas.throwFeatMissing("reciprocalRank", "type.QASet");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((QASet_Type)jcasType).casFeatCode_reciprocalRank, v);}    
    
     
   //*--------------*

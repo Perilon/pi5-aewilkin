@@ -145,8 +145,8 @@ You need to implement the types requried for your ranking model.</description>
           <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
         <featureDescription>
-          <name>meanReciprocalRank</name>
-          <description>The mean reciprocal rank of the passages in a QASet</description>
+          <name>reciprocalRank</name>
+          <description>The reciprocal rank of the first correct answer of the ranked passages in a QASet</description>
           <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
         <featureDescription>

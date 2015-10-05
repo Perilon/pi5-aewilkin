@@ -287,21 +287,31 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       /*Calculate precisionAt1*/
       
       double precisionAt1 = 0;
-      double denom1;
+//      double denom1;
+//      
+//      if (totalNumCorrect > 0) {
+//        denom1 = 1;
+//      } else {
+//        denom1 = Double.MIN_VALUE;
+//      }
+//      
+//      int numAt1Correct = 0;
+//      
+//      if ((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) {
+//        numAt1Correct++;
+//      }
+//      
+//      precisionAt1 = numAt1Correct / denom1;
+//      
+//      qaSet.setPrecisionAt1(precisionAt1);
+//      
+//      Okay, I guess this can be less complicated.
       
-      if (totalNumCorrect > 0) {
-        denom1 = 1;
+      if (((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) && (totalNumCorrect > 0)) {
+        precisionAt1 = 1;
       } else {
-        denom1 = Double.MIN_VALUE;
+        precisionAt1 = 0;
       }
-      
-      int numAt1Correct = 0;
-      
-      if ((((Passage) RankedPassageFSArray.get(0)).getLabel()) == true) {
-        numAt1Correct++;
-      }
-      
-      precisionAt1 = numAt1Correct / denom1;
       
       qaSet.setPrecisionAt1(precisionAt1);
       
@@ -309,52 +319,83 @@ public class InputDocumentAnnotator extends JCasAnnotator_ImplBase {
       /*Calculate precisionAt5*/
       
       double precisionAt5 = 0;
-      double denom5;
-      
-      if (totalNumCorrect > 5) {
-        denom5 = 5;
-      } else if (totalNumCorrect <= 5 && totalNumCorrect > 0) {
-        denom5 = totalNumCorrect;
-      } else {
-        denom5 = Double.MIN_VALUE;
-      }
-      
       int numAt5Correct = 0;
+
+//      double denom5;
+//      
+//      if (totalNumCorrect > 5) {
+//        denom5 = 5;
+//      } else if (totalNumCorrect <= 5 && totalNumCorrect > 0) {
+//        denom5 = totalNumCorrect;
+//      } else {
+//        denom5 = Double.MIN_VALUE;
+//      }
+//      
+//      
+//      for (int i = 0; i < 5; i++) {
+//        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) {
+//          numAt5Correct++;
+//        }
+//      }
+//      
+//      precisionAt5 = numAt5Correct / denom5;
+//      
+//      qaSet.setPrecisionAt5(precisionAt5);
+//      
+//      This is also less complicated than I thought it was.
       
-      for (int i = 0; i < 5; i++) {
-        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) {
-          numAt5Correct++;
+      if (totalNumCorrect > 0) {
+        for (int i = 0; i < 5; i++) {
+          if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true) {
+            numAt5Correct++;
+          }
         }
+        precisionAt5 = (double) numAt5Correct / (double) 5; 
+      } else {
+        precisionAt5 = 0;
       }
-      
-      precisionAt5 = numAt5Correct / denom5;
       
       qaSet.setPrecisionAt5(precisionAt5);
       
       
-      /*Calculate Mean Reciprocal Rank*/
-
-      double mrrRunningTotal = 0;
+      /*Calculate Reciprocal Rank*/
+      
+//      I guess we're not doing it this way.
+//
+//      double mrrRunningTotal = 0;
+//      
+//      for (int i = 0; i < passageFSArrayLen; i++) {
+//        if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true ) {
+//          double rr = (double) (1/(double) (i+1));
+//          mrrRunningTotal += rr;
+//          
+////          (qaSet.getRankedPassageFSArray(i)).setReciprocalRank(rr);
+//          
+//        }
+//      }
+      
+//      double MRR;
+//        
+//      if (totalNumCorrect > 0) {
+//        MRR = mrrRunningTotal / (double) totalNumCorrect;
+//      } else {
+//        MRR = Double.MIN_VALUE;
+//      }
+//      
+//      qaSet.setMeanReciprocalRank(MRR);
+      
+      
+//      We're doing it this way!  Here's your reciprocal rank:
+      
+      double RR = 0;
       
       for (int i = 0; i < passageFSArrayLen; i++) {
         if ((((Passage) RankedPassageFSArray.get(i)).getLabel()) == true ) {
-          double rr = (double) (1/(double) (i+1));
-          mrrRunningTotal += rr;
-          
-//          (qaSet.getRankedPassageFSArray(i)).setReciprocalRank(rr);
-          
-        }
-      }
+          RR = (1 / (double) i); 
+         }
+      }      
       
-      double MRR;
-        
-      if (totalNumCorrect > 0) {
-        MRR = mrrRunningTotal / (double) totalNumCorrect;
-      } else {
-        MRR = Double.MIN_VALUE;
-      }
-      
-      qaSet.setMeanReciprocalRank(MRR);
+      qaSet.setReciprocalRank(RR);
       
       
       /*Calculate Average Precision*/
