@@ -122,9 +122,9 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
     
           // if file doesn't exist, then create it
           if (!file.exists()) {
-            System.out.println("!file.exists");
+//            System.out.println("!file.exists");
             file.createNewFile();
-            System.out.println("file created");
+//            System.out.println("file created");
           }
     
           FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -136,12 +136,20 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
             FSIndex QASetIndex = jcas.getAnnotationIndex(QASet.type);
             FSIterator QASetIter = QASetIndex.iterator();
             
+            int questionCounter = 0;
+            double apRunningTotal = 0;
+            double rrRunningTotal = 0;
+            
             bw.write("Question ID,Precision at 1,Precision at 5,Reciprocal rank,Average precision\n");
             
             while (QASetIter.hasNext()) {
               
+              questionCounter++;
+              
               QASet qaSet = (QASet) QASetIter.next();
               
+//              From last homework assignment
+//              
 //              FSArray passageFSArray = qaSet.getPassageFSArray();
 //              
 //              int len = passageFSArray.size();
@@ -158,19 +166,26 @@ public class PassageRankingWriter extends CasConsumer_ImplBase {
               
               String ID = ((Question) qaSet.getQuestion()).getId();
               
-              
               double Pat1 = qaSet.getPrecisionAt1();
               double Pat5 = qaSet.getPrecisionAt5();
               double RR = qaSet.getReciprocalRank();
+              
+              rrRunningTotal += RR;
+              
               double AP = qaSet.getAveragePrecision();
               
-              System.out.println(Double.toString(AP));
-              
+              apRunningTotal += AP;
+                            
               bw.write(ID + "," + Double.toString(Pat1) + "," + Double.toString(Pat5) + "," + 
                       Double.toString(RR) + "," + Double.toString(AP) + "\n");
-              
-              
             }
+            
+            double MAP = apRunningTotal / (double) questionCounter;
+            double MRR = rrRunningTotal / (double) questionCounter;
+            
+            System.out.println("Mean average precision: " + Double.toString(MAP));
+            System.out.println("Mean reciprocal rank: " + Double.toString(MRR));
+            
             bw.close();
             System.out.println("Done");
        }
